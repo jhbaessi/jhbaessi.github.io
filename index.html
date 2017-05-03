@@ -164,6 +164,23 @@
           color: #f4511e;
       }
     </style>
+
+    <script>
+      $(document).ready(function(){
+        updateDonutChart('#programming-language-c', 60, true);
+        updateDonutChart('#programming-language-cplusplus', 60, true);
+        updateDonutChart('#programming-language-java', 60, true);
+        updateDonutChart('#programming-language-python', 10, true);
+        updateDonutChart('#programming-language-html', 20, true);
+        updateDonutChart('#programming-language-javascript', 20, true);
+      });
+
+      $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+      });
+    </script>
+    
   </head>
 
   <body id="title" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -559,21 +576,5 @@
       <a href="https://github.com/simple-donut/simple-donut-jquery"> simple-donut-jquery</a>.
     </p>
   </footer>
-
-  <script>
-    $(document).ready(function(){
-      updateDonutChart('#programming-language-c', 60, true);
-      updateDonutChart('#programming-language-cplusplus', 60, true);
-      updateDonutChart('#programming-language-java', 60, true);
-      updateDonutChart('#programming-language-python', 10, true);
-      updateDonutChart('#programming-language-html', 20, true);
-      updateDonutChart('#programming-language-javascript', 20, true);
-    });
-
-    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-      event.preventDefault();
-      $(this).ekkoLightbox();
-    });
-  </script>
   </body>
 </html>
