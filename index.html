@@ -27,95 +27,553 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script src="js/vendor/jquery.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/ekko-lightbox.min.js"></script>
+    <script src="js/simple-donut-jquery/simple-donut-jquery.js"></script>
+
+    <link href="css/ekko-lightbox.min.css" rel="stylesheet">
+    <link href="css/simple-donut-jquery/simple-donut.css" rel="stylesheet">
 
     <style>
+      tab1 { padding-left: 4em; }
+
       body {
-          position: relative;
+      font: 400 15px Lato, sans-serif;
+      line-height: 1.8;
+      color: #818181;
       }
-      #profile    {padding-top:50px;height:500px;color: #fff; background-color: #FA8072;}
-      #education  {padding-top:50px;height:500px;color: #fff; background-color: #FF8200;}
-      #skills     {padding-top:50px;height:500px;color: #fff; background-color: #FFB400;}
-      #work       {padding-top:50px;height:500px;color: #fff; background-color: #009688;}
-      #projects   {padding-top:50px;height:500px;color: #fff; background-color: #1E88E5;}
-      #portfolio  {padding-top:50px;height:500px;color: #fff; background-color: #00008C;}
-      #section41  {padding-top:50px;height:500px;color: #fff; background-color: #9400D3;}
-      #section42  {padding-top:50px;height:500px;color: #fff; background-color: #009688;}
-      </style>
+      h2 {
+          font-size: 24px;
+          text-transform: uppercase;
+          color: #303030;
+          font-weight: 600;
+          margin-bottom: 30px;
+      }
+      h3 {
+          font-size: 22px;
+      }
+      h4 {
+          font-size: 19px;
+          line-height: 1.375em;
+          color: #303030;
+          font-weight: 400;
+          margin-bottom: 30px;
+      }
+      .jumbotron {
+          background-color: #f4511e;
+          color: #fff;
+          padding: 100px 25px;
+          font-family: Montserrat, sans-serif;
+      }
+      .container-fluid {
+          padding: 60px 50px;
+      }
+      .bg-grey {
+          background-color: #f6f6f6;
+      }
+      .logo-small {
+          color: #f4511e;
+          font-size: 50px;
+      }
+      .logo {
+          color: #f4511e;
+          font-size: 200px;
+      }
+      .item h4 {
+          font-size: 19px;
+          line-height: 1.375em;
+          font-weight: 400;
+          font-style: italic;
+          margin: 70px 0;
+      }
+      .item span {
+          font-style: normal;
+      }
+      .panel {
+          border: 1px solid #f4511e;
+          border-radius:0 !important;
+          transition: box-shadow 0.5s;
+      }
+      .panel:hover {
+          box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+      }
+      .panel-footer .btn:hover {
+          border: 1px solid #f4511e;
+          background-color: #fff !important;
+          color: #f4511e;
+      }
+      .panel-heading {
+          color: #fff !important;
+          background-color: #f4511e !important;
+          padding: 25px;
+          border-bottom: 1px solid transparent;
+          border-top-left-radius: 0px;
+          border-top-right-radius: 0px;
+          border-bottom-left-radius: 0px;
+          border-bottom-right-radius: 0px;
+      }
+      .panel-footer {
+          background-color: white !important;
+      }
+      .panel-footer h3 {
+          font-size: 32px;
+      }
+      .panel-footer h4 {
+          color: #aaa;
+          font-size: 14px;
+      }
+      .panel-footer .btn {
+          margin: 15px 0;
+          background-color: #f4511e;
+          color: #fff;
+      }
+      .navbar {
+          margin-bottom: 0;
+          background-color: #f4511e;
+          z-index: 9999;
+          border: 0;
+          font-size: 12px !important;
+          line-height: 1.42857143 !important;
+          letter-spacing: 4px;
+          border-radius: 0;
+          font-family: Montserrat, sans-serif;
+      }
+      .navbar li a, .navbar .navbar-brand {
+          color: #fff !important;
+      }
+      .navbar-nav li a:hover, .navbar-nav li.active a {
+          color: #f4511e !important;
+          background-color: #fff !important;
+      }
+      .navbar-default .navbar-toggle {
+          border-color: transparent;
+          color: #fff !important;
+      }
+      .dropdown ul li a {
+        font-size: 12px !important;
+        line-height: 1.42857143 !important;
+        letter-spacing: 4px;
+        border-radius: 0;
+        font-family: Montserrat, sans-serif;
+        background-color: #f4511e !important;
+      }
+      footer .glyphicon {
+          font-size: 20px;
+          margin-bottom: 20px;
+          color: #f4511e;
+      }
+    </style>
   </head>
 
-  <body data-spy="scroll" data-target=".navbar" data-offset="50">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#profile">Jeonghwan Bae</a>
+  <body id="title" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#title">J.H.Bae</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="docs/resume_jhbae.pdf">Resume</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Title -->
+  <div id="title" class="jumbotron text-center">
+    <h1>Jeonghwan Bae</h1>
+    <p>software developer</p>
+    <h5><span class="glyphicon glyphicon-phone"></span> +82 10-2585-7909</h5>
+    <h5><span class="glyphicon glyphicon-envelope"></span> jhbaessi@gmail.com</h5>
+  </div>
+
+  <!-- Container (About Section) -->
+  <div id="about" class="container-fluid">
+    <h2 class="text-center"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 소개</h2><br>
+    <div class="row">
+      <div class="col-sm-8">
+        <h4>안녕하세요. 소프트웨어 개발자 배정환입니다.</h4>
+        <p>백발이 되어서도 리듬감있게 키보드 두들기며 즐겁게 개발하는 것을 꿈꾸는 개발자입니다.<br>
+          주로 Windows, Android 애플리케이션 개발을 하며, 임베디드시스템을 전공하여 기본적인 임베디드시스템 개발도 가능합니다.<br>
+          이것저것 호기심이 많아 현재는 Python과 Raspberry Pi에 관심을 가지고 있어 두 가지를 사용한 개인 프로젝트를 진행하려고합니다.</p>
+        <br>
+        <p>개발 외 취미는 자전거타기, 사진찍기, 여행하기이며, 이를 모두 합쳐 여행하면서 자전거도 타고 사진도 찍고 커피한잔하는 여유를 가지며 개발하고 싶은 궁극적인 로망이 있습니다.</p>
+      </div>
+      <div class="col-sm-4 text-center">
+        <!--profile picture-->
+        <img src="image/profile-picture.jpeg" class="img-rounded" alt="profile picture" width="256" height="">
+      </div>
+    </div>
+  </div>
+
+  <!-- Container (Skills Section) -->
+  <div id="skills" class="container-fluid bg-grey text-center">
+    <h2><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 기술</h2>
+    <h3>프로그래밍 언어</h3>
+    <br>
+    <h5><strong>상</strong>: 설계와 기능을 구현에 매우 자유로움.</h5>
+    <h5><strong>중</strong>: 외부의 정보를 활용하여 대부분의 기능 구현 가능.</h5>
+    <h5><strong>하</strong>: 작은 단위의 기능 구현 가능.</h5>
+    <br>
+
+    <!-- Programming language-C/C++/JAVA -->
+    <div class="row">
+      <div class="col-sm-4 text-center">
+        <div id="programming-language-c" class="donut-size">
+          <div class="pie-wrapper">
+            <span class="label">
+              <span class="">중</span>
+            </span>
+            <div class="pie">
+              <div class="left-side half-circle"></div>
+              <div class="right-side half-circle"></div>
+            </div>
+            <div class="shadow"></div>
+          </div>
         </div>
-        <div>
-          <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-              <li><a href="#education">Education</a></li>
-              <li><a href="#skills">Skills</a></li>
-              <li><a href="#work">Work</a></li>
-              <li><a href="#projects">Projects</a></li>
-              <li><a href="#portfolio">Portfolio</a></li>
-              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Section 4 <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#section41">Section 4-1</a></li>
-                  <li><a href="#section42">Section 4-2</a></li>
-                </ul>
-              </li>
-            </ul>
+        <h4><strong>C</strong></h4>
+      </div>
+
+      <div class="col-sm-4 text-center">
+        <div id="programming-language-cplusplus" class="donut-size">
+          <div class="pie-wrapper">
+            <span class="label">
+              <span class="">중</span>
+            </span>
+            <div class="pie">
+              <div class="left-side half-circle"></div>
+              <div class="right-side half-circle"></div>
+            </div>
+            <div class="shadow"></div>
+          </div>
+        </div>
+        <h4><strong>C++</strong></h4>
+      </div>
+
+      <div class="col-sm-4 text-center">
+        <div id="programming-language-java" class="donut-size">
+          <div class="pie-wrapper">
+            <span class="label">
+              <span class="">중</span>
+            </span>
+            <div class="pie">
+              <div class="left-side half-circle"></div>
+              <div class="right-side half-circle"></div>
+            </div>
+            <div class="shadow"></div>
+          </div>
+        </div>
+        <h4><strong>JAVA</strong></h4>
+      </div>
+    </div>
+
+    <!-- Programming language-Python/HTML/JavaScript -->
+    <div class="row">
+      <div class="col-sm-4 text-center">
+        <div id="programming-language-python" class="donut-size">
+          <div class="pie-wrapper">
+            <span class="label">
+              <span class="">하</span>
+            </span>
+            <div class="pie">
+              <div class="left-side half-circle"></div>
+              <div class="right-side half-circle"></div>
+            </div>
+            <div class="shadow"></div>
+          </div>
+        </div>
+        <h4><strong>Python</strong></h4>
+      </div>
+
+      <div class="col-sm-4 text-center">
+        <div id="programming-language-html" class="donut-size">
+          <div class="pie-wrapper">
+            <span class="label">
+              <span class="">하</span>
+            </span>
+            <div class="pie">
+              <div class="left-side half-circle"></div>
+              <div class="right-side half-circle"></div>
+            </div>
+            <div class="shadow"></div>
+          </div>
+        </div>
+        <h4><strong>HTML</strong></h4>
+      </div>
+
+      <div class="col-sm-4 text-center">
+        <div id="programming-language-javascript" class="donut-size">
+          <div class="pie-wrapper">
+            <span class="label">
+              <span class="">하</span>
+            </span>
+            <div class="pie">
+              <div class="left-side half-circle"></div>
+              <div class="right-side half-circle"></div>
+            </div>
+            <div class="shadow"></div>
+          </div>
+        </div>
+        <h4><strong>JavaScript</strong></h4>
+      </div>
+    </div>
+
+    <h3>프레임워크/엔진</h3>
+    <h4><strong>Qt, MFC, .NET, FFmpeg, Android SDK, JNI</strong></h4>
+    <h3>운영체제</h3>
+    <h4><strong>Windows, Android, Linux</strong></h4>
+    <h3>개발도구</h3>
+    <h4><strong>Visual Studio, Eclipse, Qt Creator<br>Git, SVN, UML</strong></h4>
+  </div>
+
+  <!-- Container (Experience Section) -->
+  <div id="experience" class="container-fluid text-center">
+    <h2><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> 경력</h2><br>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-sm-5 text-left">
+            <h5 class="panel-title">2014.01 - 2016.07</h5>
+          </div>
+          <div class="col-sm-7 text-left">
+            <h5 class="panel-title">Vadas Co.,Ltd</h5>
           </div>
         </div>
       </div>
-    </nav>
+      <div class="panel-body text-left">
+        Windows, Android, Linux 환경에서 동작하는 소프트웨어 개발 담당.<br>
+        주요업무는 블랙박스 녹화 데이터를 재생을 위한 뷰어 개발.<br>
+        기타 소규모 프로젝트로 필요한 소프트웨어 개발.
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-sm-5 text-left">
+            <h5 class="panel-title">2012.03 - 2014.01</h5>
+          </div>
+          <div class="col-sm-7 text-left">
+            <h5 class="panel-title">RESL(Real-time and Embedded System Lab.)</h5>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body text-left">
+        대구대학교 임베디드시스템 교수 연구실 보조연구원.<br>
+        무선센서네트워크 관련 연구개발 참여.<br>
+        Multi-Channel Packet-Analysis System 개발.<br>
+         - <a style="font-size:12px" href="http://www.cs.ox.ac.uk/ewsn14/docs/ewsndemoposter.pdf">Demo Abstract: Demo Abstract: MPASS: Multi-channel Packet Sniffing System based on IEEE 802.15.4</a><br>
+         - <a style="font-size:12px" href="http://journals.sagepub.com/doi/full/10.1155/2014/216504">Multi-Channel Packet-Analysis System Based on IEEE 802.15.4 Packet-Capturing Modules</a>
+      </div>
+    </div>
+  </div>
 
-    <div id="profile" class="container-fluid">
-      <h1>Profile</h1>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-    </div>
-    <div id="education" class="container-fluid">
-      <h1>Education</h1>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-    </div>
-    <div id="skills" class="container-fluid">
-      <h1>Skills</h1>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-    </div>
-    <div id="work" class="container-fluid">
-      <h1>Work</h1>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-    </div>
-    <div id="projects" class="container-fluid">
-      <h1>Projects</h1>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-    </div>
-    <div id="portfolio" class="container-fluid">
-      <h1>Portfolio</h1>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-    </div>
-    <div id="section41" class="container-fluid">
-      <h1>Section 4 Submenu 1</h1>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-    </div>
-    <div id="section42" class="container-fluid">
-      <h1>Section 4 Submenu 2</h1>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-    </div>
+  <!-- Container (Portfolio Section) -->
+  <div id="portfolio" class="container-fluid bg-grey">
+    <div class="text-center">
+      <h2><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> 포트폴리오</h2>
+      <div id="portfolio-semco">
+        <h2>SEMCO 블랙박스 Viewer(preceding research)</h2>
+        <!-- SEMCO-PC -->
+        <div class="row">
+          <div class="col-sm-6 text-left">
+            <h4>PC Viewer</h4>
+            <p>르노 자동차에 장착되는 순정 블랙박스에 대한 선행연구 프로젝트 중 PC뷰어 개발.<br>
+              블랙박스에서 MicroSD 카드에 자체파일시스템으로 녹화한 데이터를 Windows에서 재생.</p>
+            <br>
+            <strong>사용기술</strong>
+            <p>Qt, FFmpeg, Google Maps</p>
+          </div>
+          <div class="col-sm-6">
+            <a href="image/portfolio-semco-pcviewer.png" data-toggle="lightbox" data-title="SEMCO PC Viewer">
+              <img src="image/portfolio-semco-pcviewer.png" class="img-fluid" width="512px;">
+            </a>
+          </div>
+        </div>
 
+        <br>
+
+        <!-- SEMCO-AVN -->
+        <div class="row">
+          <div class="col-sm-6 text-left">
+            <h4>AVN Viewer</h4>
+            <p>르노 자동차에 장착되는 순정 블랙박스에 대한 선행연구 프로젝트 중 AVN시스템의 뷰어 개발.<br>
+              블랙박스와 Ethernet 통신으로 녹화된 데이터를 AVN 시스템의 뷰어 애플리케이션에서 재생.
+            </p>
+            <br>
+            <strong>사용기술</strong>
+            <p>Qt, FFmpeg, Yocto</p>
+          </div>
+          <div class="col-sm-6">
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div id="portfolio-sandisk">
+        <h2>SanDisk DashCam Viewer</h2>
+        <!-- SanDisk-PC -->
+        <div class="row">
+          <div class="col-sm-6 text-left">
+            <h4>PC Viewer</h4>
+            <p>SanDisk DashCam(블랙박스) 프로젝트 중 PC뷰어 개발.<br>
+              블랙박스에서 MicroSD 카드에 자체파일시스템으로 녹화한 데이터를 Windows에서 재생.</p>
+            <br>
+            <strong>사용기술</strong>
+            <p>Qt, FFmpeg, SDL, Google Maps</p>
+          </div>
+          <div class="col-sm-6">
+            <a href="image/portfolio-sddcv-pcviewer-1.jpg" data-toggle="lightbox" data-gallery="sandisk-pc" class="col-sm-4" data-title="SanDisk PC Viewer-버튼 설명, 화면 구성">
+                <img src="image/portfolio-sddcv-pcviewer-1.jpg" class="img-fluid" height="512px;">
+            </a>
+          </div>
+        </div>
+
+        <!-- elements not showing, use data-remote -->
+        <div data-toggle="lightbox" data-gallery="sandisk-pc" data-remote="image/portfolio-sddcv-pcviewer-2.jpg" data-title="SanDisk PC Viewer-파일 재생/삭제하기, 프린트 창, 화면 모드 변경"></div>
+        <div data-toggle="lightbox" data-gallery="sandisk-pc" data-remote="image/portfolio-sddcv-pcviewer-3.jpg" data-title="SanDisk PC Viewer-프로그램 설정"></div>
+        <div data-toggle="lightbox" data-gallery="sandisk-pc" data-remote="image/portfolio-sddcv-pcviewer-4.jpg" data-title="SanDisk PC Viewer-블랙박스 설정"></div>
+
+        <br>
+
+        <!-- SanDisk-Mobile -->
+        <div class="row">
+          <div class="col-sm-6 text-left">
+            <h4>Mobile Viewer</h4>
+            <p>SanDisk DashCam(블랙박스) 프로젝트 중 모바일 뷰어 개발.<br>
+              블랙박스에서 MicroSD 카드에 자체파일시스템으로 녹화한 데이터를 Android 스마트폰에서 재생.<br>
+              웹뷰로 인터페이스를 구성.
+            </p>
+            <br>
+            <strong>사용기술</strong>
+            <p>Android SDK, jQuery Mobile</p>
+          </div>
+          <div class="col-sm-6">
+            <a href="image/portfolio-sddcv-mobileviewer-1.jpg" data-toggle="lightbox" data-gallery="sandisk-moblie" class="col-sm-4" data-title="SanDisk Mobile Viewer-자동 업데이트, 홈, 메뉴, 재생 목록">
+              <img src="image/portfolio-sddcv-mobileviewer-1.jpg" class="img-fluid" height="512px;">
+            </a>
+          </div>
+        </div>
+
+        <!-- elements not showing, use data-remote -->
+        <div data-toggle="lightbox" data-gallery="sandisk-moblie" data-remote="image/portfolio-sddcv-mobileviewer-2.jpg" data-title="SanDisk Mobile Viewer-영상 재생, 사용자 도움말 보기"></div>
+
+      </div>
+
+      <br>
+
+      <div id="portfolio-remember">
+        <h2>Vadas Remember Viewer</h2>
+        <!-- Vadas-PC -->
+        <div class="row">
+          <div class="col-sm-6 text-left">
+            <h4>PC Viewer</h4>
+            <p>Vadas Remember(블랙박스) 프로젝트 중 PC뷰어 개발.<br>
+              블랙박스에서 MicroSD 카드에 자체파일시스템으로 녹화한 데이터를 Windows에서 재생.
+            </p>
+            <br>
+            <strong>사용기술</strong>
+            <p>MFC, .NET, FFmpeg, Google Maps</p>
+          </div>
+          <div class="col-sm-6">
+            <a href="image/portfolio-remember-pcviewer.jpg" data-toggle="lightbox" data-title="Remember PC Viewer">
+              <img src="image/portfolio-remember-pcviewer.jpg" class="img-fluid" width="512px;">
+            </a>
+          </div>
+        </div>
+
+        <br>
+
+        <!-- Vadas-Mobile -->
+        <div class="row">
+          <div class="col-sm-6 text-left">
+            <h4>Mobile Viewer</h4>
+            <p>Vadas Remember(블랙박스) 프로젝트 중 모바일 뷰어 개발.<br>
+              블랙박스에서 MicroSD 카드에 자체파일시스템으로 녹화한 데이터를 Android 스마트폰에서 재생.<br>
+              웹뷰로 인터페이스를 구성하였으며, 자체파일시스템에 접근하기위해 JNI를 사용.<br>
+              재생 기능은 VLC를 사용하여 구현.
+            </p>
+            <br>
+            <strong>사용기술</strong>
+            <p>Android SDK, JNI, VLC, jQuery Mobile</p>
+          </div>
+          <div class="col-sm-6">
+            <a href="image/portfolio-remember-mobileviewer-1.png" data-toggle="lightbox" data-gallery="remember-moblie" class="col-sm-4" data-title="Remember Mobile Viewer-홈">
+              <img src="image/portfolio-remember-mobileviewer-1.png" class="img-fluid" height="256px;">
+            </a>
+          </div>
+        </div>
+
+        <!-- elements not showing, use data-remote -->
+        <div data-toggle="lightbox" data-gallery="remember-moblie" data-remote="image/portfolio-remember-mobileviewer-2.png" data-title="Remember Mobile Viewer-메뉴선택"></div>
+        <div data-toggle="lightbox" data-gallery="remember-moblie" data-remote="image/portfolio-remember-mobileviewer-3.png" data-title="Remember Mobile Viewer-재생목록"></div>
+        <div data-toggle="lightbox" data-gallery="remember-moblie" data-remote="image/portfolio-remember-mobileviewer-4.png" data-title="Remember Mobile Viewer-재생화면"></div>
+        <div data-toggle="lightbox" data-gallery="remember-moblie" data-remote="image/portfolio-remember-mobileviewer-5.png" data-title="Remember Mobile Viewer-설정"></div>
+        <div data-toggle="lightbox" data-gallery="remember-moblie" data-remote="image/portfolio-remember-mobileviewer-6.png" data-title="Remember Mobile Viewer-도움말"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-gallery" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button class="close" type="button" data-dismiss="modal">×</button>
+            <h3 class="modal-title"></h3>
+        </div>
+        <div class="modal-body">
+            <div id="modal-carousel" class="carousel">
+
+              <div class="carousel-inner">
+              </div>
+
+              <a class="carousel-control left" href="#modal-carousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+              <a class="carousel-control right" href="#modal-carousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="container-fluid text-center">
+    <a href="#title" title="To Top">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+    <p>
+      This page is built around <a herf="https://www.w3schools.com/bootstrap/bootstrap_theme_company.asp">w3schools's Bootstrap theme</a> and made by
+      <a href="http://getbootstrap.com">Bootstrap</a>,
+      <a href="https://jquery.com"> jQuery</a>,
+      <a href="http://ashleydw.github.io/lightbox/#single-image"> Lightbox</a> and
+      <a href="https://github.com/simple-donut/simple-donut-jquery"> simple-donut-jquery</a>.
+    </p>
+  </footer>
+
+  <script>
+    $(document).ready(function(){
+      updateDonutChart('#programming-language-c', 60, true);
+      updateDonutChart('#programming-language-cplusplus', 60, true);
+      updateDonutChart('#programming-language-java', 60, true);
+      updateDonutChart('#programming-language-python', 10, true);
+      updateDonutChart('#programming-language-html', 20, true);
+      updateDonutChart('#programming-language-javascript', 20, true);
+    });
+
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox();
+    });
+  </script>
   </body>
 </html>
